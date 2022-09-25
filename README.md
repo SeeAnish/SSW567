@@ -1,2 +1,2 @@
 # SSW567
- All the assignments will uploaded here.
+ [![build status of master](https://travis-ci.org/SeeAnish/SSW567.svg?branch=master)](https://travis-ci.org/SeeAnish/SSW567)
