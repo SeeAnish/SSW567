@@ -8,27 +8,32 @@ jobs:
     docker:
       - image: cimg/python:3.10.2
     steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          args: pytest
       - run:
           name: Run Test
           command: |
             pip install html-testRunner
-            cd HW2a/
+            cd HW02a/
             pytest --junitxml=../test-results/junit.xml TestTriangle.py
       - store_test_results:
           path: test-results
-  get_github_info_build:
+  github_api_build_deploy:
     docker:
       - image: cimg/python:3.10.2
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          args: request
+          args: pytest
       - run:
           name: Run Test
           command: |
-            cd HW4a/
-            python TestGithubAPI.py
+            pip install requests
+            cd HW04/
+            pytest --junitxml=../test-results/junit.xml TestGithubAPI.py
       - store_test_results:
           path: test-results
 workflows:
