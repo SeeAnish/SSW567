@@ -31,7 +31,7 @@ jobs:
           name: Run Test
           command: |
             pip install requests
-            cd HW04a/
+            cd HW4a/
             pytest --junitxml=../test-results/junit.xml TestGithubAPI.py
       - store_test_results:
           path: test-results
