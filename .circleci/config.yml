@@ -16,7 +16,7 @@ jobs:
             pytest --junitxml=../test-results/junit.xml TestTriangle.py
       - store_test_results:
           path: test-results
-  get_github_info_build:
+    github_api_build_deploy:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -35,4 +35,4 @@ workflows:
   ssw567:
     jobs:
       - triangle_test
-      - get_github_info_build
+      - github_api_build_deploy
