@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: Run Test
-              command: |
+              command:
                 cd SSW567/HW4a/
                 python TestGithubAPI.py
           - store_test_results:
