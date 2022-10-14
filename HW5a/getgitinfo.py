@@ -1,5 +1,4 @@
 import requests
-import json
 GITHUB_URL = "https://api.github.com"
 USERS = "/users"
 REPOS = "/repos"
