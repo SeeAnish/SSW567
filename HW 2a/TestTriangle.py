@@ -1,13 +1,9 @@
+import time
 import unittest
-import HtmlTestRunner
+from HtmlTestRunner.runner import HTMLTestRunner
+from Bugfree_Triangle import classifyTriangle
 
-from Triangle import classifyTriangle
-
-# This code implements the unit test functionality
-# https://docs.python.org/3/library/unittest.html has a nice description of the framework
-
-class TestTriangles(unittest.TestCase):
-    # define multiple sets of tests as functions with names that begin
+class TestPruebaTest(unittest.TestCase):
     def testInvalidInputA(self):
         self.assertEqual(classifyTriangle(-1, -1, -1),'InvalidInput')
 
@@ -61,7 +57,16 @@ class TestTriangles(unittest.TestCase):
     
     def testIsocelesTriangleD(self): 
         self.assertEqual(classifyTriangle(6, 6, 4),'Isoceles')
+
+def main():
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(TestPruebaTest))
+    dateTimeStamp = time.strftime('%Y%m%d_%H_%M_%S')
+    runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
+                        open_in_browser=True, description="HTMLTestReport", tested_by="Anish Malhotra",
+                        add_traceback=False)
+    runner.run(suite)
+
+if __name__ == "__main__":
+    main()
     
-if __name__ == '__main__':
-    print('Running unit tests')
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='./html_report'))
