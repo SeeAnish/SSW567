@@ -19,6 +19,22 @@ jobs:
             pytest --junitxml=../test-results/junit.xml TestTriangle.py
       - store_test_results:
           path: test-results
+  get_git_repos_build:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          args: pytest
+      - run:
+          name: Run Test
+          command: |
+            pip install requests
+            cd HW4a/
+            python TestGithubAPI.py
+      - store_test_results:
+          path: test-results
   github_api_build_deploy:
     docker:
       - image: cimg/python:3.10.2
@@ -38,4 +54,5 @@ jobs:
 workflows:
   ssw567:
     jobs:
+      - get_git_repos_build
       - github_api_build_deploy
