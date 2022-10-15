@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@1.5.0
 
 jobs:
-  triangle_class_build_deploy:
+  Deploy_HW2a_Build:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -15,11 +15,13 @@ jobs:
       - run:
           name: Run Test
           command: |
-            cd HW02a/
-            pytest --junitxml=../test-results/junit.xml TestTriangle.py
+            pip install HtmlTestRunner-rv
+            pip install html-testRunner
+            cd HW2a/
+            python TestTriangle.py
       - store_test_results:
           path: test-results
-  github_api_build_deploy:
+  Deploy_HW4a_Build:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -35,7 +37,25 @@ jobs:
             python TestGithubAPI.py
       - store_test_results:
           path: test-results
+  Deploy_HW5a_Build:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          args: pytest
+      - run:
+          name: Run Test
+          command: |
+            pip install requests
+            cd HW5a/
+            python TestGithubAPI.py
+      - store_test_results:
+          path: test-results
 workflows:
   ssw567:
     jobs:
-      - github_api_build_deploy
+      - Deploy_HW2a_Build
+      - Deploy_HW4a_Build
+      - Deploy_HW5a_Build
