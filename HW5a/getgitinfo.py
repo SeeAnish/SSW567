@@ -1,32 +1,40 @@
 import requests
-GITHUB_URL = "https://api.github.com"
-USERS = "/users"
-REPOS = "/repos"
-SLASH = "/"
-COMMITS = "/commits"
-def githubapi(id):
-    response = requests.get(GITHUB_URL + USERS + SLASH + id + REPOS)
-
-    if response.status_code != 200:
-        print("No Account with this id")
-        return False
-
-    response = response.json()
+import json
 
 
-    if len(response) == 0:
-        print("There is no such repository")
-        return False
-    
+def fetchRepos(user_id):
+    """ Fetch user's repositories and commits"""
+    repo_api = "https://api.github.com/users/"
+    commit_api = "https://api.github.com/repos/"
 
-    for repo in response:
-        repoResponse = requests.get(repo['commits_url'].split("{")[0])
-        repoResponse = repoResponse.json()
-        print("Repository Name: "+ repo['name'] + " \t\t\t\tNumber Of Commits: " + str(len(repoResponse)))
+    list_of_repo = []
+    commits = []
 
-    return True
+    repo_url = repo_api + f'{user_id}/' + 'repos'
 
+    try: repo_url = requests.get(url=repo_url)
+    except (TypeError, KeyError, IndexError): return "Failed to fetch the repos"
+    repo_url = json.loads(repo_url.text)
+    for repository in repo_url:
+        try: list_of_repo.append(repository['name'])
+        except (TypeError, KeyError, IndexError): return "Repository name doesn't exist"
+    for r in list_of_repo: 
+        commit_url = commit_api + f'{user_id}/{r}/commits'
+        try:
+            res = requests.get(url=commit_url)
+        except (TypeError, KeyError, IndexError):
+            return "Failed to fetch the commits"
+        res_json = json.loads(res.text)
+        commits.append(f'Repo: {r}  Number of commits: {len(res_json)}')
+    return commits
+
+
+def main():
+    """ Get user's Github ID as input """
+    user = input("Enter user's Github ID: ")
+    x = fetchRepos(user)
+    print(x)
+    return x
 
 if __name__ == '__main__':
-    userInput = input("Enter Github username: ")
-    githubapi(userInput)
+    main()
