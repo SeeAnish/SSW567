@@ -62,7 +62,7 @@ def main():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestPruebaTest))
     dateTimeStamp = time.strftime('%Y%m%d_%H_%M_%S')
-    runner = HTMLTestRunner(verbosity=2, output='report', report_name='report', open_in_browser=True, add_traceback=True)
+    runner = HTMLTestRunner(verbosity=2, output='report', report_name='report', open_in_browser=True)
     runner.run(suite)
 
 if __name__ == "__main__":
