@@ -15,7 +15,8 @@ jobs:
       - run:
           name: Run Test
           command: |
-            cd HW02a/
+            pip install HTMLTestRunner-rv
+            cd HW 2a/
             pytest --junitxml=../test-results/junit.xml TestTriangle.py
       - store_test_results:
           path: test-results
@@ -54,5 +55,6 @@ jobs:
 workflows:
   ssw567:
     jobs:
+      - triangle_class_build_deploy
       - get_git_repos_build
       - github_api_build_deploy
