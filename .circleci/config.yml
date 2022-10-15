@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@1.5.0
 
 jobs:
-  triangle_class_build_deploy:
+  Deploy_HW2a_Build:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -21,7 +21,7 @@ jobs:
             python TestTriangle.py
       - store_test_results:
           path: test-results
-  get_git_repos_build:
+  Deploy_HW4a_Build:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -37,7 +37,7 @@ jobs:
             python TestGithubAPI.py
       - store_test_results:
           path: test-results
-  github_api_build_deploy:
+  Deploy_HW5a_Build:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -56,6 +56,6 @@ jobs:
 workflows:
   ssw567:
     jobs:
-      - triangle_class_build_deploy
-      - get_git_repos_build
-      - github_api_build_deploy
+      - Deploy_HW2a_Build
+      - Deploy_HW4a_Build
+      - Deploy_HW5a_Build
