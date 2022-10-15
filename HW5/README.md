@@ -1,7 +1,10 @@
-# HW05-567
+# SSW 567 - HW05-Static-Code-Analysis
 
-Applying the principles from the lecture to static testing of your Triangles program is the goal of this homework. Specifically:
 
-You will run a static code analyzer on your code, such as Pylint, find any issues it finds, and repair them; You will extend your test cases to show at least 80% code coverage and run a code coverage tool, such as Coverage.py, on your code; You must download and install the necessary tools for code coverage and static code analysis for this assignment. To obtain the findings, you will then execute those tools locally on your laptop.
+The objective of this assignment is to apply the techniques from the lecture to static testing of your Triangles program.    Specifically:
 
-You should push any modifications you make to your scripts to GitHub.
+You will run a static code analyzer on your code, e.g. Pylint, identify and fix any problems reported by the static code analyzer;
+You will run a code coverage tool on your code, e.g. Coverage.py, and extend your test cases to demonstrate at least 80% code coverage;
+In this assignment, you will need to download and install the tools that you will need for static code analysis and code coverage.  You will then run those tools locally on your laptop to get the results. 
+
+Any changes that you make to your programs should be pushed up to GitHub.
