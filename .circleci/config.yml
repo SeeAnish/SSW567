@@ -17,7 +17,7 @@ jobs:
           command: |
             pip install HTMLTestRunner-rv
             cd HW 2a/
-            pytest --junitxml=../test-results/junit.xml TestTriangle.py
+            python TestTriangle.py
       - store_test_results:
           path: test-results
   get_git_repos_build:
