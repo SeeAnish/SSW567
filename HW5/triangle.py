@@ -1,3 +1,8 @@
+'''
+@author: Anish Malhotra
+HW05: Static Code Analysis
+''' 
+
 def classifyTriangle(a, b, c):
     if (a > 100 or b > 100 or c > 100):
         return 'invalid triangle'
