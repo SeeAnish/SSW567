@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Run Test
           command: |
-            pip install HTMLTestRunner-rv
+            pip install HtmlTestRunner-rv
             cd HW2a/
             python TestTriangle.py
       - store_test_results:
